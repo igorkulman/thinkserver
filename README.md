@@ -40,7 +40,7 @@ sudo nano /var/snap/docker/current/config/daemon.json # because Ubuntu Server
 ```
 
 ```json
-{ "dns" : [ "1.1.1.1." , "8.8.8.8" ] } 
+{ "dns" : [ "1.1.1.1" , "8.8.8.8" ] } 
 ```
 
 ```bash
