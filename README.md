@@ -93,22 +93,8 @@ sudo powertop --calibrate
 ```
 
 ```bash
-sudo nano /lib/systemd/system/powertop.service
-```
-
-```
-[Unit]
-Description=PowerTOP autotuner
-
-[Service]
-Type=oneshot
-ExecStart=/usr/sbin/powertop --auto-tune
-
-[Install]
-WantedBy=multi-user.target
-```
-
-```bash
+wget https://raw.githubusercontent.com/igorkulman/thinkserver/main/powertop.service
+sudo cp powertop.service /lib/systemd/system/powertop.service
 sudo systemctl enable --now powertop
 ```
 
