@@ -1,0 +1,84 @@
+---
+version: "2.1"
+services:
+  heimdall:
+    image: lscr.io/linuxserver/heimdall:latest
+    container_name: heimdall
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Prague
+    volumes:
+      - /home/igorkulman/docker-services/heimdall:/config
+    ports:
+      - 8080:80
+      - 8443:443
+    restart: unless-stopped
+  radarr:
+    image: linuxserver/radarr
+    container_name: radarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Prague
+      - UMASK=000
+    volumes:
+      - /home/igorkulman/docker-services/radarr/config:/config
+      - /media/data:/media
+    ports:
+      - 7878:7878
+    restart: unless-stopped
+  jackett:
+    image: linuxserver/jackett
+    container_name: jackett
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Prague
+    volumes:
+      - /home/igorkulman/docker-services/jackett/config:/config
+    ports:
+      - 9117:9117
+    restart: unless-stopped
+  sonarr:
+    image: linuxserver/sonarr
+    container_name: sonarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Prague
+      - UMASK=000
+    volumes:
+      - /home/igorkulman/docker-services/sonarr/config:/config
+      - /media/data:/media
+    ports:
+      - 8989:8989
+    restart: unless-stopped
+  transmission:
+    image: linuxserver/transmission
+    container_name: transmission
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Prague
+      - UMASK=000
+    volumes:
+      - /home/igorkulman/docker-services/transmission/config:/config
+      - /media/data/:/media
+    ports:
+      - 9091:9091
+      - 49153:49153
+      - 49153:49153/udp
+    restart: unless-stopped
+  plex:
+    container_name: plex
+    image: plexinc/pms-docker
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      - TZ=Europe/Prague
+      - PLEX_CLAIM=XXX
+    volumes:
+      - /home/igorkulman/docker-services/plex/:/config
+      - /media/data:/media
+      - /media/data/transcode:/transcode
