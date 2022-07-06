@@ -66,6 +66,30 @@ tailscale -up --advertise-exit-node
 
 ## Reduce power consumption
 
+### Disable sleep on lid close
+
+```bash
+sudo nano /etc/systemd/logind.conf
+```
+
+set `HandleLidSwitch=ignore`, `LidSwitchIgnoreInhibited=no` and 
+
+```bash
+sudo service systemd-logind restart
+```
+
+### Turn off display when lid closed
+
+Based on https://askubuntu.com/a/1117586
+
+```bash
+sudo apt-get install acpi-support vbetool
+sudo echo "event=button/lid.*" > /etc/acpi/events/lid-button
+sudo echo "action=/etc/acpi/lid.sh" >> /etc/acpi/events/lid-button
+wget https://raw.githubusercontent.com/igorkulman/thinkserver/main/lid.sh
+sudo cp lid.sh /etc/acpi/lid.sh
+```
+
 ### Disable Turbo Boost
 
 Based on https://askubuntu.com/a/619881
