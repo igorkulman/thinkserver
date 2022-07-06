@@ -49,15 +49,7 @@ sudo snap restart docker
 
 ### Direct installation
 
-Running [Pi-Hole](https://pi-hole.net/) and [Cloudflared](https://docs.pi-hole.net/guides/dns/cloudflared/) in Docker is quite challenging so I opted for direct installation
-
-```bash
-curl -sSL https://install.pi-hole.net | bash
-pihole -a -p #remove web admin password
-```
-Set up cloudflared using the [Pi-Hole documentation for cloudflared](https://docs.pi-hole.net/guides/dns/cloudflared/).
-
-Tailscale needs to be installed directly also
+Tailscale needs to be installed directly
 
 ```bash
 curl -fsSL https://tailscale.com/install.sh | sh
