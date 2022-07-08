@@ -119,40 +119,16 @@ sudo systemctl enable --now powertop
 ### Samba
 
 ```bash
+wget https://raw.githubusercontent.com/igorkulman/thinkserver/main/shares.conf
 sudo nano /etc/samba/smb.conf
 ```
+add
 
-```conf
-[movies]
-    comment = Plex Movies
-    path = /media/data/Movies
-    public = yes
-    guest only = yes
-    writable = yes
-    force create mode = 0666
-    force directory mode = 0777
-    browseable = yes
-
-[tvshows]
-    comment = Plex TV Shows
-    path = /media/data/TVShows
-    public = yes
-    guest only = yes
-    writable = yes
-    force create mode = 0666
-    force directory mode = 0777
-    browseable = yes
-
-[downloads]
-    comment = Transmission downloads
-    path = /media/data/downloads
-    public = yes
-    guest only = yes
-    writable = yes
-    force create mode = 0666
-    force directory mode = 0777
-    browseable = yes    
 ```
+include = /home/igorkulman/shares.conf
+```
+
+and restart Samba
 
 ```bash
 sudo service smbd restart
