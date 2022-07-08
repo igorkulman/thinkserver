@@ -1,6 +1,6 @@
 # ThinkServer
 
-I was not able to buy a Raspberry Pi 4 so I am now using my old Lenovo ThinkPad T400s as my home server replacing the old Raspberry Pi 2 that became too slow for my current needs.
+I was not able to buy a Raspberry Pi 4 so I am now using my old Lenovo ThinkPad T440s as my home server replacing the old Raspberry Pi 2 that became too slow for my current needs.
 
 ![Dashboard](Heimdall.png)
 
@@ -57,6 +57,10 @@ tailscale -up --advertise-exit-node
 ```
 
 ## Reduce power consumption
+
+### Remove external battery
+
+The Thinkpad T440s includes a smaller internal battery and a bigger removable external battery. I removed the external battery to prolong its lifespan and reduce the heat generated charging it.
 
 ### Disable sleep on lid close
 
