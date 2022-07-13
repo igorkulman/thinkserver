@@ -118,6 +118,18 @@ sudo cp powertop.service /lib/systemd/system/powertop.service
 sudo systemctl enable --now powertop
 ```
 
+### Power consumption measurements
+
+In idle all the docker containers are running but just Pi-Hole + cloudflared respond to DNS queries from my network, the other containers do not really do antyhing.
+
+| State 							| Power usage 		|
+| ---- 								| ----------------- |
+| Idle 								|              	5 W |
+| Plex (playback) 					|               8 W |
+| Plex (playback with transcoding)  |              17 W |
+
+All the measurements were done with [Solight DT26](https://www.solight.cz/en/detailsklk.aspx?sklk_id=1RS1000201).
+
 ## Network shares
 
 ### Samba
