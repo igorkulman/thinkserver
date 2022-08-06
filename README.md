@@ -92,6 +92,7 @@ Based on https://askubuntu.com/a/619881
 
 ```bash
 sudo apt-get install msr-tools
+wget https://raw.githubusercontent.com/igorkulman/thinkserver/main/turbo-boost.sh
 ./turbo-boost.sh disable
 ```
 
@@ -116,6 +117,15 @@ sudo powertop --calibrate
 wget https://raw.githubusercontent.com/igorkulman/thinkserver/main/powertop.service
 sudo cp powertop.service /lib/systemd/system/powertop.service
 sudo systemctl enable --now powertop
+```
+
+### Disable the red LED
+
+Disabling the red power LED on the lid is not really a power saving features, it is more an annoyance to remove, especially when the Thinkpad is placed in some visible place.
+
+```bash
+wget https://raw.githubusercontent.com/igorkulman/thinkserver/main/led-off.sh
+./led-off.sh
 ```
 
 ### Power consumption measurements
