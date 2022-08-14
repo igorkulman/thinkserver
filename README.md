@@ -56,6 +56,28 @@ curl -fsSL https://tailscale.com/install.sh | sh
 tailscale -up --advertise-exit-node
 ```
 
+#### Tailscale DNS
+
+Tailscale has a bad habit of overriding the machines DNS server when you use [MagicDNS](https://tailscale.com/kb/1081/magicdns/), even when you use `--accept-dns=false`. To prevent it I use `resolvconf`
+
+```bash
+sudo apt install resolvconf 
+sudo systemctl enable --now resolvconf.service
+```
+
+```bash
+ sudo nano /etc/resolvconf/resolv.conf.d/head
+```
+
+to add
+
+```
+nameserver 1.1.1.1 
+nameserver 8.8.8.8
+```
+
+and `sudo resolvconf -u`
+
 ## Reduce power consumption
 
 ### Remove external battery
