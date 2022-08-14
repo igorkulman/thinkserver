@@ -22,7 +22,7 @@ Main goals of my home server are network wide ad blocking with Pi-Hole and a med
 
 ### Docker
 
-Most fo the software runs in Docker for easier management. See [docker-compose.yml](https://github.com/igorkulman/thinkserver/blob/main/docker-compose.yml) for exact configuration.
+Most of the software runs in Docker for easier management. See [docker-compose.yml](https://github.com/igorkulman/thinkserver/blob/main/docker-compose.yml) for exact configuration.
 
 ```bash
 mkdir docker-services
@@ -33,7 +33,7 @@ sudo docker-compose up -d
 
 #### Docker DNS
 
-I encountered problems where Docker containers were not able to access DNS, probably because of Pi-Hole. I fixed it by setting Docker DNS to directly use Clodflare and Google DNS.
+I encountered problems where Docker containers were not able to access DNS, probably because of Pi-Hole. I fixed it by setting Docker DNS to directly use Cloudflare and Google DNS.
 
 ```bash
 sudo nano /var/snap/docker/current/config/daemon.json # because Ubuntu Server
