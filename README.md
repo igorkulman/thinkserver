@@ -83,6 +83,7 @@ sudo apt-get install acpi-support vbetool
 sudo echo "event=button/lid.*" > /etc/acpi/events/lid-button
 sudo echo "action=/etc/acpi/lid.sh" >> /etc/acpi/events/lid-button
 wget https://raw.githubusercontent.com/igorkulman/thinkserver/main/lid.sh
+chmod +x lid.sh
 sudo cp lid.sh /etc/acpi/lid.sh
 ```
 
@@ -93,6 +94,7 @@ Based on https://askubuntu.com/a/619881
 ```bash
 sudo apt-get install msr-tools
 wget https://raw.githubusercontent.com/igorkulman/thinkserver/main/turbo-boost.sh
+chmod +x turbo-boost.sh
 ./turbo-boost.sh disable
 ```
 
@@ -125,6 +127,7 @@ Disabling the red power LED on the lid is not really a power saving features, it
 
 ```bash
 wget https://raw.githubusercontent.com/igorkulman/thinkserver/main/led-off.sh
+chmod +x led-off.sh
 ./led-off.sh
 ```
 
