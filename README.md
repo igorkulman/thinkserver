@@ -47,7 +47,7 @@ sudo nano /var/snap/docker/current/config/daemon.json # because Ubuntu Server
 sudo snap restart docker
 ```
 
-### Direct installation
+### Tailscale
 
 Tailscale needs to be installed directly
 
@@ -77,6 +77,10 @@ nameserver 8.8.8.8
 ```
 
 and `sudo resolvconf -u`
+
+#### Plex over Tailscale
+
+To be able to use Plex over Tailscale I had to add its Tailscale address (http://100.x.y.z:32400) to `Settings` | `Network` | `Custom server access URLs` (only visible after showing advanced settings).
 
 ## Reduce power consumption
 
