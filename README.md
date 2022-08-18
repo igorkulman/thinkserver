@@ -47,36 +47,14 @@ sudo nano /var/snap/docker/current/config/daemon.json # because Ubuntu Server
 sudo snap restart docker
 ```
 
-### Tailscale
+### Direct installation
 
 Tailscale needs to be installed directly
 
 ```bash
 curl -fsSL https://tailscale.com/install.sh | sh
-tailscale -up --advertise-exit-node
+sudo tailscale up --advertise-exit-node --accept-dns=false
 ```
-
-#### Tailscale DNS
-
-Tailscale has a bad habit of overriding the machines DNS server when you use [MagicDNS](https://tailscale.com/kb/1081/magicdns/), even when you use `--accept-dns=false`. To prevent it I use `resolvconf`
-
-```bash
-sudo apt install resolvconf 
-sudo systemctl enable --now resolvconf.service
-```
-
-```bash
- sudo nano /etc/resolvconf/resolv.conf.d/head
-```
-
-to add
-
-```
-nameserver 1.1.1.1 
-nameserver 8.8.8.8
-```
-
-and `sudo resolvconf -u`
 
 #### Plex over Tailscale
 
