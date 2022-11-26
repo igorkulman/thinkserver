@@ -2,7 +2,7 @@
 
 I was not able to buy a Raspberry Pi 4 so I am now using my old Lenovo ThinkPad T440s as my home server replacing the old Raspberry Pi 2 that became too slow for my current needs.
 
-![Dashboard](Heimdall.png)
+![Dashboard](Heimdall.jpg)
 
 ## Main goal
 
