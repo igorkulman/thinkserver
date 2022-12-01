@@ -167,3 +167,28 @@ and restart Samba
 ```bash
 sudo service smbd restart
 ```
+
+### NFS
+
+NFS is faster than Samba so I prefer it for accessing the data from macOS machines.
+
+```bash
+sudo apt install nfs-kernel-server
+sudo nano /etc/exports
+```
+
+add
+
+```
+/media/data/downloads *(rw,sync,no_subtree_check,root_squash,insecure)
+/media/data/backup *(rw,sync,no_subtree_check,root_squash,insecure)
+/media/data/Movies *(rw,sync,no_subtree_check,root_squash,insecure)
+/media/data/TVShows *(rw,sync,no_subtree_check,root_squash,insecure)
+```
+
+and reload NFS
+
+```bash
+sudo exportfs -a
+sudo systemctl restart nfs-kernel-server
+```
