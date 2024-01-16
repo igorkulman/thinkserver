@@ -1,18 +1,6 @@
 ---
 version: "2.1"
-services:
-  heimdall:
-    image: lscr.io/linuxserver/heimdall:latest
-    container_name: heimdall
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Europe/Prague
-    volumes:
-      - ./heimdall:/config
-    ports:
-      - 8000:80
-    restart: unless-stopped
+services:  
   radarr:
     image: linuxserver/radarr
     container_name: radarr
@@ -138,7 +126,16 @@ services:
     restart: unless-stopped
     privileged: true
     network_mode: host
-
+  homepage:
+    image: ghcr.io/gethomepage/homepage:latest
+    container_name: homepage
+    ports:
+      - 3000:3000
+    volumes:
+      - ./homepage/config:/app/config
+      - ./homepage/icons:/app/public/icons
+      - ./homepage/images:/app/public/images
+      - /var/run/docker.sock:/var/run/docker.sock
 
 networks:
   pihole:

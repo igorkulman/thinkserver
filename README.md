@@ -2,7 +2,7 @@
 
 I was not able to buy a Raspberry Pi 4 so I am now using my old Lenovo ThinkPad T440s as my home server replacing the old Raspberry Pi 2 that became too slow for my current needs.
 
-![Dashboard](Heimdall.jpg)
+![Dashboard](homepage.png)
 
 ## Main goal
 
@@ -17,7 +17,7 @@ Main goals of my home server are network wide ad blocking with Pi-Hole and a med
 - [Transmission](https://transmissionbt.com/)
 - [Pi-Hole](https://pi-hole.net/)
 - [cloudflared](https://docs.pi-hole.net/guides/dns/cloudflared/)
-- [Heimdall](https://heimdall.site/)
+- [Homepage](https://gethomepage.dev/latest/)
 - [Home Assistant](https://www.home-assistant.io/)
 - [Tailscale](https://tailscale.com/)
 
