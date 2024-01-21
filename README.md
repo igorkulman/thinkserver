@@ -14,6 +14,7 @@ Main goals of my home server are network wide ad blocking with Pi-Hole and a med
 - [Sonaar](https://sonarr.tv/)
 - [Radarr](https://radarr.video/)
 - [Jackett](https://github.com/Jackett/Jackett)
+- [FlareSolverr](https://github.com/FlareSolverr/FlareSolverr)
 - [Transmission](https://transmissionbt.com/)
 - [Pi-Hole](https://pi-hole.net/)
 - [cloudflared](https://docs.pi-hole.net/guides/dns/cloudflared/)
