@@ -6,7 +6,7 @@ I was not able to buy a Raspberry Pi 4 so I am now using my old Lenovo ThinkPad 
 
 ## Main goal
 
-Main goals of my home server are network wide ad blocking with Pi-Hole and a media server with automated movies and TV shows downloads accessible also from the outside thanks to Tailscale.
+Main goals of my home server are network wide ad blocking and a media server with automated movies and TV shows downloads accessible also from the outside thanks to Tailscale.
 
 ## Software
 
@@ -16,8 +16,7 @@ Main goals of my home server are network wide ad blocking with Pi-Hole and a med
 - [Jackett](https://github.com/Jackett/Jackett)
 - [FlareSolverr](https://github.com/FlareSolverr/FlareSolverr)
 - [Transmission](https://transmissionbt.com/)
-- [Pi-Hole](https://pi-hole.net/)
-- [cloudflared](https://docs.pi-hole.net/guides/dns/cloudflared/)
+- [AdGuardHome](https://github.com/AdguardTeam/AdGuardHome)
 - [Homepage](https://gethomepage.dev/latest/)
 - [Home Assistant](https://www.home-assistant.io/)
 - [Tailscale](https://tailscale.com/)
@@ -35,7 +34,7 @@ sudo docker-compose up -d
 
 #### Docker DNS
 
-I encountered problems where Docker containers were not able to access DNS, probably because of Pi-Hole. I fixed it by setting Docker DNS to directly use Cloudflare and Google DNS.
+I encountered problems where Docker containers were not able to access DNS, probably because of AdGuardHome. I fixed it by setting Docker DNS to directly use Cloudflare and Google DNS.
 
 ```bash
 sudo nano /var/snap/docker/current/config/daemon.json # because Ubuntu Server
@@ -139,7 +138,7 @@ chmod +x led-off.sh
 
 ### Power consumption measurements
 
-In idle all the docker containers are running but just Pi-Hole + cloudflared respond to DNS queries from my network, the other containers do not really do antyhing.
+In idle all the docker containers are running but just AdGuardHome responds to DNS queries from my network, the other containers do not really do anything.
 
 | State 							| Power usage 		|
 | ---- 								| ----------------- |

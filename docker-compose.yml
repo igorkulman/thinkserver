@@ -81,41 +81,6 @@ services:
     privileged: true
     devices:
       - /dev/dri:/dev/dri
-  pihole:
-    image: pihole/pihole:latest
-    container_name: pihole
-    hostname: pihole
-    networks:
-      pihole:
-        ipv4_address: 172.20.0.2
-    dns:
-      - 127.0.0.1
-      - 1.1.1.1
-    ports:
-      - 53:53/tcp
-      - 53:53/udp
-      - 67:67/udp
-      - 80:80/tcp
-    environment:
-      - TZ=Europe/Prague
-      - PROXY_LOCATION=pihole
-      - VIRTUAL_PORT=80
-      - PIHOLE_DNS_=172.20.0.3#5053
-    volumes:
-      - ./pihole/:/etc/pihole/
-      - ./dnsmasq.d/:/etc/dnsmasq.d/
-    restart: always
-  cloudflared:
-    image: crazymax/cloudflared:latest
-    container_name: cloudflared
-    hostname: cloudflared
-    networks:
-      pihole:
-        ipv4_address: 172.20.0.3
-    environment:
-      - TZ=Europe/Prague
-      - TUNNEL_DNS_UPSTREAM=https://1.1.1.1/dns-query,https://1.0.0.1/dns-query
-    restart: always
   watchtower:
     image: containrrr/watchtower
     environment:
@@ -145,9 +110,27 @@ services:
       - ./homepage/icons:/app/public/icons
       - ./homepage/images:/app/public/images
       - /var/run/docker.sock:/var/run/docker.sock
-
-networks:
-  pihole:
-    ipam:
-      config:
-        - subnet: 172.20.0.0/24
+  adguardhome:
+    image: adguard/adguardhome
+    container_name: adguardhome
+    environment:
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - ./adguard/conf:/opt/adguardhome/work
+      - ./adguard/work:/opt/adguardhome/conf
+    ports:
+      - 53:53/tcp 
+      - 53:53/udp
+      - 67:67/udp 
+      - 68:68/udp
+      - 80:80/tcp 
+      - 443:443/tcp 
+      - 443:443/udp 
+      - 3001:3000/tcp
+      - 853:853/tcp
+      - 853:853/udp
+      - 5443:5443/tcp
+      - 5443:5443/udp
+      - 6060:6060/tcp
+    restart: unless-stopped
