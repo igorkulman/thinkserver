@@ -61,7 +61,7 @@ services:
     network_mode: host
     environment:
       - TZ=Europe/Prague
-      - PLEX_CLAIM=XXX
+      - PLEX_CLAIM=${PLEX_CLAIM}
     volumes:
       - ./plex/:/config
       - /media/data:/media
