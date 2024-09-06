@@ -142,3 +142,18 @@ services:
       - 5443:5443/udp
       - 6060:6060/tcp
     restart: unless-stopped
+  shinkro:
+    image: ghcr.io/varoop/shinkro:latest
+    container_name: shinkro
+    volumes:
+      - ./shinkro/config:/config
+    ports:
+      - "7011:7011"
+    restart: unless-stopped
+    environment:      
+      - SHINKRO_USERNAME=${SHINKRO_USERNAME}
+      - SHINKRO_PASSWORD=${SHINKRO_PASSWORD}
+      - PLEX_USERNAME=${PLEX_USERNAME}
+      - ANIME_LIBRARIES=Anime
+      - PUID=1000
+      - PGID=1000
