@@ -13,12 +13,13 @@ Main goals of my home server are network wide ad blocking and a media server wit
 - [Plex Media Server](https://www.plex.tv/)
 - [Sonaar](https://sonarr.tv/)
 - [Radarr](https://radarr.video/)
-- [Jackett](https://github.com/Jackett/Jackett)
 - [FlareSolverr](https://github.com/FlareSolverr/FlareSolverr)
 - [Transmission](https://transmissionbt.com/)
 - [AdGuardHome](https://github.com/AdguardTeam/AdGuardHome)
 - [Homepage](https://gethomepage.dev/latest/)
 - [Home Assistant](https://www.home-assistant.io/)
+- [Prowlarr](https://prowlarr.com/)
+- [Shinkro](https://github.com/varoOP/shinkro)
 - [Tailscale](https://tailscale.com/)
 
 ### Docker
@@ -29,7 +30,7 @@ Most of the software runs in Docker for easier management. See [docker-compose.y
 mkdir docker-services
 cd docker-services
 wget https://raw.githubusercontent.com/igorkulman/thinkserver/main/docker-compose.yml
-sudo docker-compose up -d
+docker-compose up -d
 ```
 
 #### Docker DNS
