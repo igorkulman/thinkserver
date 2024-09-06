@@ -71,9 +71,13 @@ services:
       - /dev/dri:/dev/dri
   watchtower:
     image: containrrr/watchtower
-    environment:
-      - WATCHTOWER_CLEANUP="true"
-      - WATCHTOWER_SCHEDULE=0 0 4 * * *
+    environment:            
+      - WATCHTOWER_SCHEDULE=0 0 4 * * *            
+      - WATCHTOWER_CLEANUP=true
+      - WATCHTOWER_INCLUDE_STOPPED=true
+      - WATCHTOWER_POLL_INTERVAL=86400
+      - WATCHTOWER_NO_PULL=false
+      - WATCHTOWER_MONITOR_ONLY=false
       - TZ=Europe/Prague
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
