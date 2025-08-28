@@ -11,15 +11,19 @@ Main goals of my home server are network wide ad blocking and a media server wit
 ## Software
 
 - [Plex Media Server](https://www.plex.tv/)
-- [Sonaar](https://sonarr.tv/)
+- [Sonarr](https://sonarr.tv/)
 - [Radarr](https://radarr.video/)
+- [Bazarr](https://www.bazarr.media/)
 - [FlareSolverr](https://github.com/FlareSolverr/FlareSolverr)
 - [Transmission](https://transmissionbt.com/)
 - [AdGuardHome](https://github.com/AdguardTeam/AdGuardHome)
-- [Homepage](https://gethomepage.dev/latest/)
+- [Homer](https://github.com/bastienwirtz/homer/)
 - [Home Assistant](https://www.home-assistant.io/)
 - [Prowlarr](https://prowlarr.com/)
 - [Shinkro](https://github.com/varoOP/shinkro)
+- [Uptime Kuma](https://github.com/louislam/uptime-kuma)
+- [Watchtower](https://containrrr.dev/watchtower/)
+- [Unifi Controller](https://www.ui.com/software)
 - [Tailscale](https://tailscale.com/)
 
 ### Docker
@@ -74,7 +78,7 @@ The Thinkpad T440s includes a smaller internal battery and a bigger removable ex
 sudo nano /etc/systemd/logind.conf
 ```
 
-set `HandleLidSwitch=ignore`, `LidSwitchIgnoreInhibited=no` and 
+set `HandleLidSwitch=ignore`, `LidSwitchIgnoreInhibited=no` and
 
 ```bash
 sudo service systemd-logind restart

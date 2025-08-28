@@ -1,6 +1,16 @@
 ---
-version: "2.1"
-services:  
+services:
+  homer:
+    image: homer-custom:latest
+    container_name: homer
+    volumes:
+      - ./homer:/www/assets
+    ports:
+      - 3000:8080
+    user: 1000:1000
+    environment:
+      - INIT_ASSETS=1
+    restart: unless-stopped
   radarr:
     image: linuxserver/radarr
     container_name: radarr
@@ -15,7 +25,7 @@ services:
     ports:
       - 7878:7878
     restart: unless-stopped
-  flaresolverr:    
+  flaresolverr:
     image: ghcr.io/flaresolverr/flaresolverr:latest
     container_name: flaresolverr
     environment:
@@ -23,7 +33,7 @@ services:
       - TZ=Europe/Prague
     ports:
       - "8191:8191"
-    restart: unless-stopped        
+    restart: unless-stopped
   sonarr:
     image: linuxserver/sonarr
     container_name: sonarr
@@ -54,6 +64,16 @@ services:
       - 49153:49153
       - 49153:49153/udp
     restart: unless-stopped
+  uptime-kuma:
+    container_name: uptime-kuma
+    image: louislam/uptime-kuma:1
+    restart: always
+    ports:
+      - "3003:3001"
+    volumes:
+      - ./uptime-kuma:/app/data
+    environment:
+      - UPTIME_KUMA_WS_ORIGIN_CHECK=bypass
   plex:
     container_name: plex
     image: plexinc/pms-docker
@@ -71,17 +91,30 @@ services:
       - /dev/dri:/dev/dri
   watchtower:
     image: containrrr/watchtower
-    environment:            
-      - WATCHTOWER_SCHEDULE=0 0 4 * * *            
+    environment:
+      - WATCHTOWER_SCHEDULE=0 0 4 * * *
+      - WATCHTOWER_DEBUG=true
+      - WATCHTOWER_NOTIFICATIONS_LEVEL=debug
       - WATCHTOWER_CLEANUP=true
-      - WATCHTOWER_INCLUDE_STOPPED=true
-      - WATCHTOWER_POLL_INTERVAL=86400
-      - WATCHTOWER_NO_PULL=false
-      - WATCHTOWER_MONITOR_ONLY=false
       - TZ=Europe/Prague
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /etc/timezone:/etc/timezone:ro
+  unifi-controller:
+    image: jacobalberty/unifi:v8
+    container_name: unifi-controller
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - MEM_LIMIT=1024
+      - MEM_STARTUP=1024
+      - UNIFI_UID=1000
+      - UNIFI_GID=1000
+      - TZ=Europe/Prague
+    volumes:
+      - ./unifi:/unifi
+    network_mode: host
+    restart: unless-stopped
   homeassistant:
     container_name: homeassistant
     image: "ghcr.io/home-assistant/home-assistant:stable"
@@ -92,17 +125,6 @@ services:
     restart: unless-stopped
     privileged: true
     network_mode: host
-  homepage:
-    image: ghcr.io/gethomepage/homepage:latest
-    container_name: homepage
-    ports:
-      - 3000:3000
-    volumes:
-      - ./homepage/config:/app/config
-      - ./homepage/icons:/app/public/icons
-      - ./homepage/images:/app/public/images
-      - /var/run/docker.sock:/var/run/docker.sock
-    restart: unless-stopped
   prowlarr:
     container_name: prowlarr
     image: ghcr.io/hotio/prowlarr
@@ -115,9 +137,7 @@ services:
       - TZ=Europe/Prague
     volumes:
       - ./prowlarr:/config
-    # networks:
-    #   - noipv6
-    restart: unless-stopped       
+    restart: unless-stopped
   adguardhome:
     image: adguard/adguardhome
     container_name: adguardhome
@@ -128,13 +148,13 @@ services:
       - ./adguard/conf:/opt/adguardhome/work
       - ./adguard/work:/opt/adguardhome/conf
     ports:
-      - 53:53/tcp 
+      - 53:53/tcp
       - 53:53/udp
-      - 67:67/udp 
+      - 67:67/udp
       - 68:68/udp
-      - 80:80/tcp 
-      - 443:443/tcp 
-      - 443:443/udp 
+      - 80:80/tcp
+      - 443:443/tcp
+      - 443:443/udp
       - 3001:3000/tcp
       - 853:853/tcp
       - 853:853/udp
@@ -143,17 +163,30 @@ services:
       - 6060:6060/tcp
     restart: unless-stopped
   shinkro:
-    image: ghcr.io/varoop/shinkro:latest
+    image: ghcr.io/varoop/shinkro
     container_name: shinkro
     volumes:
       - ./shinkro/config:/config
     ports:
       - "7011:7011"
     restart: unless-stopped
-    environment:      
-      - SHINKRO_USERNAME=${SHINKRO_USERNAME}
-      - SHINKRO_PASSWORD=${SHINKRO_PASSWORD}
-      - PLEX_USERNAME=${PLEX_USERNAME}
+    environment:
+      - SHINKRO_USERNAME=shinkro
+      - SHINKRO_PASSWORD=shinkro
+      - PLEX_USERNAME=igorkulman
       - ANIME_LIBRARIES=Anime
       - PUID=1000
       - PGID=1000
+  bazarr:
+    image: lscr.io/linuxserver/bazarr:latest
+    container_name: bazarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Prague
+    volumes:
+      - ./bazarr/config:/config
+      - /media/data:/media
+    ports:
+      - 6767:6767
+    restart: unless-stopped
